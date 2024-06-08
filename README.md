@@ -11,26 +11,28 @@ BeeFramework/
 │   ├── index.html
 │   └── styles.css
 ├── src/
-│   ├── assets/
-│   │   └── css/
-│   │		└── global.css
-│   ├── models/
-│   │   └── Model.js
-│   ├── routes/
-│   │   └── Route.js
-│   ├── services/
-│   │   └── ApiService.js
-│   ├── templates/
-│   │   ├── components/
-│   │	│	├── BeeComponent.js
-│   │	│	├── Footer.js
-│   │	│	└── Header.js
-│   │   ├── pages
-│   │	│	└── Home.js
-│   │   └── Layout.js
-│   ├── utils/
-│   │   └── DomUtils.js
-│   └── App.js
+│    ├── assets/
+│    │    └── css/
+│    │          └── global.css
+│    ├── models/
+│    │    └── Model.js
+│    ├── routes/
+│    │    └── Route.js
+│    ├── services/
+│    │    └── ApiService.js
+│    ├── templates/
+│    │    ├── components/
+│    │    │    ├── BeeComponent.js
+│    │    │    ├── Footer.js
+│    │    │    └── Header.js
+│    │    ├── pages
+│    │    │    ├── Home.js
+│    │    │    ├─ About.js
+│    │    │    └── 404.js
+│    │    └── Layout.js
+│    ├── utils/
+│    │    └── DomUtils.js
+│    └── App.js
 ├── package.json
 ├── package-lock.json
 ├── postcss.config.js
