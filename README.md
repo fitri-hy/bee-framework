@@ -49,3 +49,38 @@ cd bee-framework
 npm install
 npm start
 ```
+
+## Using ApiService
+
+- Import ApiService
+
+Import ApiService from the appropriate path in any JavaScript file in your project.
+
+`import ApiService from '../services/ApiService';`
+
+- Use `getData` Method
+
+Use the `getData` method to retrieve data from the given URL.
+
+`const data = await ApiService.getData('https://example.com/api/data');`
+
+- Error Handling (optional)
+
+Add error handling according to your needs.
+
+```
+try {
+  const data = await ApiService.getData('https://example.com/api/data');
+} catch (error) {
+  console.error('Failed to fetch data:', error);
+}
+```
+
+
+
+
+
+
+
+
+
