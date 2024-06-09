@@ -3,9 +3,11 @@ import BeeComponent from './BeeComponent';
 class Footer extends BeeComponent {
   render() {
     return `
-	<footer class="fixed z-50 flex justify-center bottom-0 w-full w-full mx-auto px-8 py-4">
-		<span class="text-gray-600 dark:text-gray-300">©2024 Bee Framework. All Right Reserved.</span>
-    </footer>
+	<footer class="w-full mt-12">
+		<div class="flex mx-auto container justify-center py-4 text-center text-gray-600 dark:text-gray-300">
+			<span class="font-normal Inter">©2024 Bee Framework. All rights reserved.</span>
+		</div>
+	</footer>
     `;
   }
 }
