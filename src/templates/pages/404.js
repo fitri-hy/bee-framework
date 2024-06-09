@@ -3,13 +3,13 @@ import BeeComponent from '../components/BeeComponent';
 class NotFound extends BeeComponent {
   render() {
     return `
-    <section class="h-screen w-screen flex items-center justify-center">
+   <section class="h-screen w-screen flex items-center justify-center bg-slate-100 dark:bg-neutral-800">
 		<div class="px-4 mx-auto max-w-7xl">
-			<div class="mx-auto text-center">
-				<h1 class="text-3xl mb-4 font-extrabold leading-none tracking-normal text-gray-200 md:text-6xl md:tracking-tight">
+			<div class="mx-auto md:w-11/12 xl:w-9/12 text-center">
+				<h1 class="mb-9 font-extrabold leading-none tracking-normal text-gray-800 dark:text-gray-200 text-5xl tracking-tight">
 					<span>404</span>
 				</h1>
-				<img class="h-36 w-auto m-auto" src="/images/logo.png" alt="logo">
+				<img class="h-36 w-auto m-auto bg-neutral-700 p-4 rounded-lg" src="/images/logo.png" alt="logo">
 				<p class="px-0 mt-6 mb-9 text-lg md:text-xl lg:px-24">
 					This is an example of an 404 pages
 				</p>

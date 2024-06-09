@@ -1,4 +1,5 @@
 import BeeComponent from './BeeComponent';
+import DarkMode from './DarkMode';
 
 class Header extends BeeComponent {
 
@@ -12,6 +13,10 @@ class Header extends BeeComponent {
         floatingCard.style.display = (floatingCard.style.display === 'block') ? 'none' : 'block';
       });
     });
+	
+	this.darkMode = new DarkMode();
+    window.darkMode = this.darkMode;
+    window.DarkLight = this;
   }
   
   render() {
@@ -26,7 +31,7 @@ class Header extends BeeComponent {
 		</div>
 		<div class="flex-initial">
 			<div class="flex items-center gap-6 block">
-				<div class="flex items-center gap-5">
+				<div class="flex items-center gap-5 text-gray-200">
 					<a href="/" class="font-bold hover:text-amber-500 tracking-tight">
 						Home
 					</a>
@@ -34,7 +39,7 @@ class Header extends BeeComponent {
 						About
 					</a>
 				</div>
-				<div class="inline relative">
+				<div class="inline flex gap-4 items-center">
 					<button id="menuNavbar" type="button" class="inline-flex items-center relative px-2 border border-amber-500 text-amber-500 rounded-full">
 						<div class="pl-1">
 							<svg
@@ -65,6 +70,7 @@ class Header extends BeeComponent {
 							</svg>
 						</div>
 					</button>
+					${this.darkMode.render()}
 				</div>
 			</div>
 		  </div>
