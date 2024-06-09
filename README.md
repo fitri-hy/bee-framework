@@ -4,6 +4,46 @@
 
 Bee Framework is a pure JavaScript framework designed to build lightweight and efficient user interfaces (UI), ensuring optimal performance and easy development. 
 
+## Development
+```
+git clone https://github.com/fitri-hy/bee-framework.git
+cd bee-framework
+npm install
+npm start
+```
+
+## Production
+- Build project: `npm run build`.
+- upload the `dist` folder to your hosting service.
+- Open Setup Node.js App
+- Set Application startup file: `server.js`
+
+## Using ApiService
+
+- Import ApiService
+
+Import ApiService from the appropriate path in any JavaScript file in your project.
+
+`import ApiService from '../services/ApiService';`
+
+- Use `getData` Method
+
+Use the `getData` method to retrieve data from the given URL.
+
+`const data = await ApiService.getData('https://example.com/api/data');`
+
+- Error Handling (optional)
+
+Add error handling according to your needs.
+
+```
+try {
+  const data = await ApiService.getData('https://example.com/api/data');
+} catch (error) {
+  console.error('Failed to fetch data:', error);
+}
+```
+
 ## Folder Structure:
 ```
 BeeFramework/
@@ -40,47 +80,3 @@ BeeFramework/
 ├── webpack.config.js
 └── yarn.lock
 ```
-
-## Instalation
-
-```
-git clone https://github.com/fitri-hy/bee-framework.git
-cd bee-framework
-npm install
-npm start
-```
-
-## Using ApiService
-
-- Import ApiService
-
-Import ApiService from the appropriate path in any JavaScript file in your project.
-
-`import ApiService from '../services/ApiService';`
-
-- Use `getData` Method
-
-Use the `getData` method to retrieve data from the given URL.
-
-`const data = await ApiService.getData('https://example.com/api/data');`
-
-- Error Handling (optional)
-
-Add error handling according to your needs.
-
-```
-try {
-  const data = await ApiService.getData('https://example.com/api/data');
-} catch (error) {
-  console.error('Failed to fetch data:', error);
-}
-```
-
-
-
-
-
-
-
-
-

@@ -1,14 +1,18 @@
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: {
-    app: ['./src/App.js']
+    app: './src/App.js'
   },
   output: {
-    path: path.resolve(__dirname, 'public'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/'
   },
+  devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'eval-source-map',
   devServer: {
     static: {
       directory: path.join(__dirname, 'public'),
@@ -49,5 +53,14 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'postcss-loader']
       }
     ]
-  }
+  },
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'public', to: '' },
+		{ from: 'node_server', to: '' },
+      ]
+    }),
+    new CleanWebpackPlugin()
+  ]
 };
