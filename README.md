@@ -44,6 +44,12 @@ try {
 }
 ```
 
+## Support
+- .js
+- .jsx
+- .tsx
+- .vue
+
 ## Folder Structure:
 ```
 BeeFramework/

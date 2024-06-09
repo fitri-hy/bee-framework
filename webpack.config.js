@@ -1,6 +1,7 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -39,14 +40,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript']
           }
         }
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       },
       {
         test: /\.css$/,
@@ -54,11 +59,18 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.tsx', '.vue'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
+  },
   plugins: [
+    new VueLoaderPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         { from: 'public', to: '' },
-		{ from: 'node_server', to: '' },
+        { from: 'node_server', to: '' },
       ]
     }),
     new CleanWebpackPlugin()
