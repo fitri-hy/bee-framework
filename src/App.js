@@ -1,6 +1,7 @@
 import { routes, handleRouteChange } from './routes/Route';
 import Layout from './templates/Layout';
 import './assets/css/global.css';
+import './assets/css/style.scss';
 
 class App {
   constructor() {

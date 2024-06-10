@@ -48,7 +48,7 @@ try {
 - .js
 - .jsx
 - .tsx
-- .vue
+- .scss
 
 ## Folder Structure:
 ```
