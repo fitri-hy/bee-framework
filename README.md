@@ -44,6 +44,63 @@ try {
 }
 ```
 
+
+## Using Routing
+```
+# Path: src/routes/Route.js
+
+import Home from '../templates/pages/Home';
+// Add other import pages here ...
+
+import DomUtils from '../utils/DomUtils';
+
+const routes = [
+  {
+    path: '/',
+    component: Home,
+    meta: {
+      title: 'Welcome to Bee Framework | More Agile and Efficient User Interface',
+      description: 'Bee Framework is a pure JavaScript framework designed to build lightweight and efficient user interfaces (UI), ensuring optimal performance and easy development.',
+      keywords: 'Bee Framework, JavaScript, user interface, UI, web application, efficient, light, optimal performance'
+    }
+  },
+  // Add another route path here ...
+];
+
+// Other scripts ...
+
+export { routes, handleRouteChange };
+```
+
+
+## Using AOS (Animation On Scroll)
+- Install AOS (Animation On Scroll) using Yarn, Npm, Bower.
+```
+yarn add aos
+npm install aos --save
+bower install aos --save
+```
+- Open Files: `src/templates/Layout.js`
+```
+import Header from './components/Header';
+import Footer from './components/Footer';
+...
+
+// == ADD == //
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+document.addEventListener('DOMContentLoaded', () => {
+  AOS.init();
+});
+// ========= //
+
+class Layout {
+...
+```
+- Add: data-aos="---" to the html element. look at the official site: <a href="https://michalsnik.github.io/aos/">Official AOS</a>.
+
+
 ## Support
 - .js
 - .jsx
