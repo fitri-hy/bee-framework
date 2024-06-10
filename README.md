@@ -1,4 +1,4 @@
-<img src="ss.png">
+<img src="./sss.png">
 
 # Bee Framework
 
