@@ -116,7 +116,8 @@ BeeFramework/
 ├── src/
 │    ├── assets/
 │    │    └── css/
-│    │          └── global.css
+│    │          ├── global.css
+│    │          └── style.scss
 │    ├── models/
 │    │    └── Model.js
 │    ├── routes/
