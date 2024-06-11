@@ -205,7 +205,63 @@ dataTemplate() {
 // ...
 
 ```
+## Example POST Data From APIService
+```
+import BeeComponent from '../components/BeeComponent';
+import ApiService from '../../services/ApiService';
+import Layout from '../Layout';
 
+class Home extends BeeComponent {
+  constructor() {
+    super();
+    this.render();
+    this.setupFormEventListener();
+  }
+  
+  async handleFormSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const usersName = formData.get('usersName');
+
+    try {
+      const response = await ApiService.postData('http://api.example/get/data', { name: usersName });
+      console.log('Data successfully submitted:', response);
+    } catch (error) {
+      console.error('Error submitting data:', error);
+    }
+  }
+
+  setupFormEventListener() {
+    document.getElementById('addForm').addEventListener('submit', this.handleFormSubmit.bind(this));
+  }
+
+  render() {
+    const content = this.dataTemplate();
+    document.getElementById('app').innerHTML = new Layout().render(content);
+  }
+
+  dataTemplate() {
+    return `
+      <section id="dataView" class="py-20">
+        <div class="mx-auto w-7/8 flex justify-center items-center h-1/5">
+          <div class="w-7/8 mx-auto relative h-full z-30 pt-2 inter">
+            <form id="addForm" class="mt-4">
+              <label for="usersName">User Name:</label><br>
+              <input type="text" id="usersName" name="usersName"><br>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => new Home());
+
+export default Home;
+
+```
 
 ## Using Routing
 ```
