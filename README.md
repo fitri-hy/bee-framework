@@ -39,7 +39,7 @@ Use the `getData` method to retrieve data from the given URL.
 #### DELETE
 `const response = await ApiService.deleteData('http://api.example/data');`
 
-- Error Handling (optional)
+#### Error Handling (optional)
 
 Add error handling according to your needs.
 
