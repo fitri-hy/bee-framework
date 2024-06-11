@@ -55,7 +55,7 @@ try {
 }
 ```
 
-## GET Data From APIService
+## Example GET Data From APIService
 
 ### - Array Object
 ```
