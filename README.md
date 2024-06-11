@@ -30,7 +30,14 @@ Import ApiService from the appropriate path in any JavaScript file in your proje
 
 Use the `getData` method to retrieve data from the given URL.
 
-`const data = await ApiService.getData('http://api.example/data');`
+#### GET
+`const response = await ApiService.getData('http://api.example/data');`
+#### POST
+`const response = await ApiService.postData('http://api.example/data');`
+#### PUT
+`const response = await ApiService.putData('http://api.example/data');`
+#### DELETE
+`const response = await ApiService.deleteData('http://api.example/data');`
 
 - Error Handling (optional)
 
@@ -38,7 +45,7 @@ Add error handling according to your needs.
 
 ```
 try {
-  const data = await ApiService.getData('http://api.example/data');
+  const response = await ApiService.... // Method
 } catch (error) {
   console.error('Failed to fetch data:', error);
 }
