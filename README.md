@@ -55,6 +55,157 @@ try {
 }
 ```
 
+## GET Data From APIService
+
+### - Array Object
+```
+import BeeComponent from '../components/BeeComponent';
+import ApiService from '../../services/ApiService';
+import Layout from '../Layout';
+
+class Home extends BeeComponent {
+  constructor() {
+    super();
+    this.data = '';
+    this.loading = true;
+    this.init();
+  }
+
+  async init() {
+    this.render();
+    try {
+      const response = await ApiService.getData('http://api.example/get/data');
+      this.data = response || [];
+    } catch (error) {
+      console.error('Error loading data:', error);
+      this.data = [];
+    } finally {
+      this.loading = false;
+      this.render();
+    }
+  }
+
+  render() {
+    const content = this.loading ? this.loadingTemplate() : this.dataTemplate();
+    document.getElementById('app').innerHTML = new Layout().render(content);
+  }
+
+  loadingTemplate() {
+    return `
+      <div id="loading" class="absolute inset-0 flex justify-center items-center z-50">
+        <div class="bg-white p-5 rounded shadow-lg">
+          <p>Memuat Data...</p>
+        </div>
+      </div>
+    `;
+  }
+
+  dataTemplate() {
+    if (this.data.length > 0) {
+      return `
+        <section id="dataView" class="py-20">
+          <div class="mx-auto w-7/8 flex justify-center items-center h-1/5">
+            <div class="w-7/8 mx-auto relative h-full z-30 pt-2 inter">
+              ${this.data.map(item => `
+                <div class="data-item" id="item-${item.id}">
+                  <p>${item.name}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </section>
+      `;
+    } else {
+      return `<p>Error loading data. Please try again later.</p>`;
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  new Home();
+});
+
+export default Home;
+```
+### - Objects by ID:
+```
+// ...
+// Script Same as before
+// ...
+
+dataTemplate() {
+    const itemIdToShow = 2; // Misalnya, kita ingin menampilkan item dengan ID 2
+    const selectedItem = this.data.find(item => item.id === itemIdToShow);
+
+    if (selectedItem) {
+      return `
+        <section id="dataView" class="py-20">
+          <div class="mx-auto w-7/8 flex justify-center items-center h-1/5">
+            <div class="w-7/8 mx-auto relative h-full z-30 pt-2 inter">
+              <div class="data-item" id="item-${selectedItem.id}">
+                <p>${selectedItem.name}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    } else {
+      return `<p>Error loading data. Item with ID ${itemIdToShow} not found.</p>`;
+    }
+}
+
+// ...
+// Script Same as before
+// ...
+```
+### - Single Object:
+```
+// ...
+// Script Same as before
+// ...
+
+async init() {
+    this.render();
+    try {
+        const response = await ApiService.getData('http://api.example/get/data');
+        this.data = response.length > 0 ? response[0] : null;
+    } catch (error) {
+        console.error('Error loading data:', error);
+        this.data = null;
+    } finally {
+        this.loading = false;
+        this.render();
+    }
+}
+
+// ...
+// Script Same as before
+// ...
+
+dataTemplate() {
+    if (this.data) {
+        return `
+        <section id="dataView" class="py-20">
+            <div class="mx-auto w-7/8 flex justify-center items-center h-1/5">
+                <div class="w-7/8 mx-auto relative h-full z-30 pt-2 inter">
+                    <div class="data-item" id="item-${this.data.id}">
+                        <p>${this.data.name}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        `;
+    } else {
+        return `<p>Error loading data. Please try again later.</p>`;
+    }
+}
+
+// ...
+// Script Same as before
+// ...
+
+```
+
 
 ## Using Routing
 ```
@@ -82,7 +233,6 @@ const routes = [
 
 export { routes, handleRouteChange };
 ```
-
 
 ## Using AOS (Animation On Scroll)
 - Install AOS (Animation On Scroll) using Yarn, Npm, Bower.
