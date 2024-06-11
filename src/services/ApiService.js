@@ -1,6 +1,6 @@
 class ApiService {
 
-  // GET Data from API
+  // Get Data from API
   static async getData(url) {
     try {
       const response = await fetch(url);
@@ -14,7 +14,7 @@ class ApiService {
     }
   }
   
-  // POST Data from API
+  // Post Data from API
   static async postData(url, data) {
     try {
       const response = await fetch(url, {
@@ -63,7 +63,7 @@ class ApiService {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      return await response.json();
+      return true;
     } catch (error) {
       console.error('Error deleting data:', error);
       return null;
