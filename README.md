@@ -75,7 +75,7 @@ class Home extends BeeComponent {
   }
 
   render() {
-    const content = this.loading ? this.loadingTemplate() : this.dataTemplate();
+    const content = this.loading ? this.loadingTemplate() : this.renderTemplate();
     document.getElementById('app').innerHTML = new Layout().render(content);
   }
 
@@ -89,7 +89,7 @@ class Home extends BeeComponent {
     `;
   }
 
-  dataTemplate() {
+  renderTemplate() {
     if (this.data.length > 0) {
       return `
         <section id="dataView" class="py-20">
@@ -122,7 +122,7 @@ export default Home;
 // Script Same as before
 // ...
 
-dataTemplate() {
+renderTemplate() {
     const itemIdToShow = 2; // Misalnya, kita ingin menampilkan item dengan ID 2
     const selectedItem = this.data.find(item => item.id === itemIdToShow);
 
@@ -171,7 +171,7 @@ async init() {
 // Script Same as before
 // ...
 
-dataTemplate() {
+renderTemplate() {
     if (this.data) {
         return `
         <section id="dataView" class="py-20">
@@ -225,11 +225,11 @@ class Home extends BeeComponent {
   }
 
   render() {
-    const content = this.dataTemplate();
+    const content = this.renderTemplate();
     document.getElementById('app').innerHTML = new Layout().render(content);
   }
 
-  dataTemplate() {
+  renderTemplate() {
     return `
       <section id="dataView" class="py-20">
         <div class="mx-auto w-7/8 flex justify-center items-center h-1/5">
