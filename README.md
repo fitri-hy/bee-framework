@@ -4,17 +4,6 @@
 
 Bee Framework is a pure JavaScript framework designed to build lightweight and efficient user interfaces (UI), ensuring optimal performance and easy development. 
 
-## Support
-- .js | .jsx | .tsx
-- Sass (.scss)
-- Tailwind CSS
-- AOS (Animation On Scroll)
-- Dark / Light Mode
-- Routing
-- Templating / Layouting
-- Api Services
-- Any more ...
-
 ## Development
 ```
 git clone https://github.com/fitri-hy/bee-framework.git
@@ -446,6 +435,17 @@ class Layout {
 ...
 ```
 - Add: data-aos="---" to the html element. look at the official site: <a href="https://michalsnik.github.io/aos/">Official AOS</a>.
+
+## Support
+- .js | .jsx | .tsx
+- Sass (.scss)
+- Tailwind CSS
+- AOS (Animation On Scroll)
+- Dark / Light Mode
+- Routing
+- Templating / Layouting
+- Api Services
+- Any more ...
 
 ## Folder Structure
 ```
