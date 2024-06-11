@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 export default Home;
 ```
-### - Objects by ID:
+### - Objects by ID
 ```
 // ...
 // Script Same as before
@@ -158,7 +158,7 @@ dataTemplate() {
 // Script Same as before
 // ...
 ```
-### - Single Object:
+### - Single Object
 ```
 // ...
 // Script Same as before
@@ -261,7 +261,7 @@ class Layout {
 ```
 - Add: data-aos="---" to the html element. look at the official site: <a href="https://michalsnik.github.io/aos/">Official AOS</a>.
 
-## Folder Structure:
+## Folder Structure
 ```
 BeeFramework/
 ├── public/
