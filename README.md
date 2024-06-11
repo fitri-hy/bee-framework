@@ -41,7 +41,7 @@ Import ApiService from the appropriate path in any JavaScript file in your proje
 
 Use the `getData` method to retrieve data from the given URL.
 
-`const data = await ApiService.getData('https://example.com/api/data');`
+`const data = await ApiService.getData('http://api.example/data');`
 
 - Error Handling (optional)
 
@@ -49,7 +49,7 @@ Add error handling according to your needs.
 
 ```
 try {
-  const data = await ApiService.getData('https://example.com/api/data');
+  const data = await ApiService.getData('http://api.example/data');
 } catch (error) {
   console.error('Failed to fetch data:', error);
 }
@@ -74,7 +74,7 @@ class Home extends BeeComponent {
   async init() {
     this.render();
     try {
-      const response = await ApiService.getData('http://api.example/get/data');
+      const response = await ApiService.getData('http://api.example/data');
       this.data = response || [];
     } catch (error) {
       console.error('Error loading data:', error);
@@ -167,7 +167,7 @@ dataTemplate() {
 async init() {
     this.render();
     try {
-        const response = await ApiService.getData('http://api.example/get/data');
+        const response = await ApiService.getData('http://api.example/data');
         this.data = response.length > 0 ? response[0] : null;
     } catch (error) {
         console.error('Error loading data:', error);
@@ -224,7 +224,7 @@ class Home extends BeeComponent {
     const usersName = formData.get('usersName');
 
     try {
-      const response = await ApiService.postData('http://api.example/get/data', { name: usersName });
+      const response = await ApiService.postData('http://api.example/data', { name: usersName });
       console.log('Data successfully submitted:', response);
     } catch (error) {
       console.error('Error submitting data:', error);
@@ -261,6 +261,136 @@ document.addEventListener('DOMContentLoaded', () => new Home());
 
 export default Home;
 
+```
+
+## Example PUT Data From APIService
+```
+import BeeComponent from '../components/BeeComponent';
+import ApiService from '../../services/ApiService';
+import Layout from '../Layout';
+
+class Home extends BeeComponent {
+  constructor() {
+    super();
+    this.render();
+    this.setupFormEventListener();
+  }
+  
+  async handleFormSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const formName = formData.get('formName');
+    const selectedId = formData.get('selectedId');
+
+    try {
+      // Get Data From API
+      const data = await ApiService.getData('http://api.example/data');
+      
+      // Search products by id
+      const dataToUpdate = data.find(putData => putData.id === parseInt(selectedId));
+      
+      if (!dataToUpdate) throw new Error('Product not found');
+      
+      // Data update process
+      dataToUpdate.name = formName;
+      
+      // Submit data editing requests to API
+      const response = await ApiService.updateData(`http://api.example/data/${selectedId}`, { name: formName });
+      console.log('Data successfully edited:', response);
+    } catch (error) {
+      console.error('Error editing data:', error);
+    }
+  }
+
+  setupFormEventListener() {
+    document.getElementById('dataForm').addEventListener('submit', this.handleFormSubmit.bind(this));
+  }
+
+  render() {
+    const content = this.renderTemplate();
+    document.getElementById('app').innerHTML = new Layout().render(content);
+  }
+
+  renderTemplate() {
+    return `
+      <section id="dataView" class="py-20">
+        <div class="mx-auto w-7/8 flex justify-center items-center h-1/5">
+          <div class="w-7/8 mx-auto relative h-full z-30 pt-2 inter">
+            <form id="dataForm" class="mt-4">
+              <label for="selectedId">Select ID:</label><br>
+              <input type="text" id="selectedId" name="selectedId"><br>
+              <label for="formName">New Name:</label><br>
+              <input type="text" id="formName" name="formName"><br>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => new Home());
+
+export default Home;
+
+```
+
+## Example DELETE Data From APIService
+```
+import BeeComponent from '../components/BeeComponent';
+import ApiService from '../../services/ApiService';
+import Layout from '../Layout';
+
+class Home extends BeeComponent {
+  constructor() {
+    super();
+    this.render();
+    this.setupFormEventListeners();
+  }
+
+  async handleFormSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const selectedId = formData.get('selectedId');
+
+    try {
+      const response = await ApiService.deleteData(`http://api.example/data/${selectedId}`);
+      console.log('Data successfully deleted:', response);
+    } catch (error) {
+      console.error('Error deleting data:', error);
+    }
+  }
+
+  setupFormEventListeners() {
+    document.getElementById('deleteForm').addEventListener('submit', this.handleFormSubmit.bind(this));
+  }
+
+  render() {
+    const content = this.deleteFormTemplate();
+    document.getElementById('app').innerHTML = new Layout().render(content);
+  }
+
+  deleteFormTemplate() {
+    return `
+      <section id="deleteView" class="py-20">
+        <div class="mx-auto w-7/8 flex justify-center items-center h-1/5">
+          <div class="w-7/8 mx-auto relative h-full z-30 pt-2 inter">
+            <form id="deleteForm" class="mt-4">
+              <label for="selectedId">Select ID to Delete:</label><br>
+              <input type="text" id="selectedId" name="selectedId"><br>
+              <button type="submit">Delete</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => new Home());
+
+export default Home;
 ```
 
 ## Using Routing
